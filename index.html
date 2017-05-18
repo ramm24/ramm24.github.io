@@ -24,6 +24,7 @@
             node.style.left = l + "%"; 
             node.innerHTML = "Go away";
             node.style.fontSize = f + "px";
+            node.style.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
             document.body.appendChild(node);
         }
     </script>
