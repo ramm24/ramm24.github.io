@@ -12,10 +12,12 @@
     </div>
     
     <script>
-        setInterval(goAway,200);  
+        setInterval(goAway,200);
+        setInterval(goAway,50);
+        setInterval(goAway,325);  
         function goAway(){
-            var l = Math.floor((Math.random() * 100) + 1);
-            var t = Math.floor((Math.random() * 100) + 1);
+            var l = Math.floor((Math.random() * 101) - 1);
+            var t = Math.floor((Math.random() * 101) - 1);
             var f = Math.floor((Math.random() * 40) + 10);
             var node = document.createElement("div");  
             node.style.position = "fixed";
