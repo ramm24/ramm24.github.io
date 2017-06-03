@@ -12,21 +12,42 @@
     </div>
     
     <script>
-        setInterval(goAway,200);
-        setInterval(goAway,50);
-        setInterval(goAway,325);  
+        var nodeArray = [];
+        setInterval(goAway,50);  
+        setInterval(changeColorsNodes,100);
         function goAway(){
-            var l = Math.floor((Math.random() * 101) - 1);
-            var t = Math.floor((Math.random() * 101) - 1);
-            var f = Math.floor((Math.random() * 40) + 10);
+            var f = Math.floor((Math.random() * 850) + 10);
+
+            
+            var l = Math.floor((Math.random() * 101) - 10);
+            var t = Math.floor((Math.random() * 101) - 20);
+            
             var node = document.createElement("div");  
             node.style.position = "fixed";
             node.style.top = t + "%"; 
             node.style.left = l + "%"; 
-            node.innerHTML = "Go away";
+            var text = "Go away";
+            if( f % 2 ===0 ){
+                text = "AWAY"
+            }
+            node.innerHTML = text;
             node.style.fontSize = f + "px";
             node.style.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+            nodeArray.push(node);
             document.body.appendChild(node);
+        }
+        function changeColorsNodes(){
+            if(nodeArray.length > 800){
+                for (var i = 0; i < 40; i++) {
+                    var node = nodeArray[i];
+                    document.body.removeChild(node);
+                }
+                nodeArray = nodeArray.splice(40,nodeArray.length);
+            }
+            for (var index = 0; index < nodeArray.length; index++) {
+                var element = nodeArray[index];
+                element.style.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+            }
         }
     </script>
 </body>
