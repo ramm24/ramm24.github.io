@@ -16,11 +16,13 @@
         setInterval(goAway,50);  
         setInterval(changeColorsNodes,100);
         function goAway(){
-            var f = Math.floor((Math.random() * 850) + 10);
+            var f = Math.floor((Math.random() * 850) + 5);
 
+            var offsetX = f / 10;
+            var offsetY = f / 15;
             
-            var l = Math.floor((Math.random() * 101) - 10);
-            var t = Math.floor((Math.random() * 101) - 20);
+            var l = Math.floor((Math.random() * 101) - offsetX);
+            var t = Math.floor((Math.random() * 101) - offsetY);
             
             var node = document.createElement("div");  
             node.style.position = "fixed";
@@ -32,12 +34,12 @@
             }
             node.innerHTML = text;
             node.style.fontSize = f + "px";
-            node.style.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+            node.style.color = getGreyColor();
             nodeArray.push(node);
             document.body.appendChild(node);
         }
         function changeColorsNodes(){
-            if(nodeArray.length > 800){
+            if(nodeArray.length > 500){
                 for (var i = 0; i < 40; i++) {
                     var node = nodeArray[i];
                     document.body.removeChild(node);
@@ -46,8 +48,18 @@
             }
             for (var index = 0; index < nodeArray.length; index++) {
                 var element = nodeArray[index];
-                element.style.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+                element.style.color = getGreyColor();
             }
+        }
+
+        function getRandomColor(){
+            return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+        }
+
+        function getGreyColor(){
+            var value = Math.random() * 0xFF | 0;
+            var grayscale = (value << 16) | (value << 8) | value;
+            return '#' + grayscale.toString(16);
         }
     </script>
 </body>
